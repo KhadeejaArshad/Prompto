@@ -11,9 +11,7 @@ export const parseTime = (timeStr: string): Date => {
   taskTime.setMinutes(minutes);
   taskTime.setSeconds(0);
 
-  if (taskTime < now) {
-    taskTime.setDate(taskTime.getDate() + 1);
-  }
-
+ 
+  
   return taskTime;
 };

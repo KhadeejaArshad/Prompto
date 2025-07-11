@@ -7,6 +7,17 @@ import AnalogClock from 'react-native-clock-analog';
 import { images } from '../constants/images';
 import Text from '../UI/Text';
 import TaskList from '../components/TaskList/TaskList';
+const getGreeting = (): string => {
+  const currentHour = new Date().getHours();
+
+  if (currentHour < 12) {
+    return 'Good Morning';
+  } else if (currentHour < 18) {
+    return 'Good Afternoon';
+  } else {
+    return 'Good Evening';
+  }
+};
 
 const Dashboard = () => {
   return (
@@ -24,7 +35,7 @@ const Dashboard = () => {
       </View>
       <View style={styles.clock}>
        <View style={styles.greeting}>
-         <Text weight="semibold" size={20}>Good Afternoon</Text>
+         <Text weight="semibold" size={20}>{getGreeting()}</Text>
        </View>
         <AnalogClock
           size={130}
