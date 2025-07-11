@@ -6,10 +6,11 @@ import Text from '../../UI/Text'
 
 interface ButtonProps{
     children:React.ReactNode,
+    onPress:()=>void
 }
-const Button = ({children}:ButtonProps) => {
+const Button = ({children,onPress}:ButtonProps) => {
   return (
-    <TouchableOpacity style={styles.buttoncontainer}>
+    <TouchableOpacity style={styles.buttoncontainer} onPress={onPress}>
       <Text color='white' weight='bold' size={18}>{children}</Text>
     </TouchableOpacity>
   )

@@ -1,17 +1,16 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { colors } from '../constants/colors';
 import { images } from '../constants/images';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Text from '../UI/Text';
 import Button from '../components/Button/Button';
+import Header from '../components/Header/Header';
 
-const Getstarted = () => {
+const Getstarted = ({navigation}:any) => {
   return (
     <View style={styles.root}>
-      <View style={styles.imagecontainer}>
-        <Image source={images.homepage} style={styles.img} />
-      </View>
+     <Header/>
       <View style={styles.content}>
             <View style={styles.welcomeimg}>
         <Image source={images.welcome} style={styles.img} />
@@ -28,10 +27,10 @@ const Getstarted = () => {
      </View>
       </View>
 
-    <View style={styles.button}>
-      <Button>Get Started</Button>
+    <Pressable style={styles.button}>
+      <Button onPress={()=>navigation.navigate('Dashboard')}>Get Started</Button>
 
-    </View>
+    </Pressable>
     </View>
   );
 };

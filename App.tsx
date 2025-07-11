@@ -1,49 +1,36 @@
 import { StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import Getstarted from './src/screens/Getstarted';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Dashboard from './src/screens/Dashboard';
+
+
+const Stack=createNativeStackNavigator();
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  // let name:string='Khadeeja'
-  // let age:number=22
-  // function greet(name:string):string{
-  //   return `Hello${name}`
-
-
-  // }
-  // enum Colors{
-  //   Red='red',
-  //   Blue='blue',
-  //   Green='green'
-  // }
-  // let c:Colors=Colors.Green
-  // type Person={
-  //   name:string,
-  //   age:number
-  // }
-  // let p1: Person = { name: "Adeel", age: 30 };
 
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <Text>Hello!{name}</Text>
-      <Text>{age}</Text>
-      <Text>{greet(name)}</Text>
-      <Text>{c}</Text>
-      <Text>{p1.age}</Text> */}
-
-      <Getstarted/>
-
-      
-      
-    </View>
+      <Stack.Navigator initialRouteName='Dashboard'>
+        <Stack.Screen
+          name="GetStarted"
+          component={Getstarted}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{ headerShown: false }}
+         
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  
-  },
 });
 
 export default App;
