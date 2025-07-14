@@ -1,5 +1,5 @@
 import React, { FC,useState } from 'react';
-import { TextInput, View, StyleSheet,TouchableOpacity } from 'react-native';
+import { TextInput, View, StyleSheet,TouchableOpacity, ScrollView } from 'react-native';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,7 +7,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Button from '../Button/Button';
 import { TaskFormProps,FormValues,RootStackParamList } from '../../utils/Interfaces/interface';
 import { useDispatch} from 'react-redux';
-import { addTask } from '../../features/tasks/taskSlice';
 import { scale,verticalScale,moderateScale } from 'react-native-size-matters';
 import { colors } from '../../constants/colors';
 import Text from '../../UI/Text';
@@ -70,7 +69,7 @@ const handleConfirm = (date: Date, setFieldValue: (field: string, value: any) =>
             onBlur={handleBlur('task')}
             value={values.task}
             placeholder="What has to be done?"
-             underlineColorAndroid='rgba(0,0,0,0)'
+            underlineColorAndroid='rgba(0, 0, 0, 0)'
           />
 
           <TouchableOpacity onPress={showTimePicker}>
@@ -80,7 +79,7 @@ const handleConfirm = (date: Date, setFieldValue: (field: string, value: any) =>
               placeholder="By What Time"
               editable={false}
               pointerEvents="none"
-               underlineColorAndroid='rgba(0,0,0,0)'
+              underlineColorAndroid='rgba(0, 0, 0, 0)'
             />
           </TouchableOpacity>
 

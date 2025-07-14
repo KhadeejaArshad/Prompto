@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
@@ -22,7 +22,6 @@ const AddTask = () => {
 
   return (
     <View style={styles.root}>
-      <Header />
       <TaskForm onAddTask={handleAddTask} />
     </View>
   );

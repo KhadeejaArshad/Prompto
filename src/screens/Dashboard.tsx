@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
@@ -21,7 +21,7 @@ const getGreeting = (): string => {
 
 const Dashboard = () => {
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root}>
       <View style={styles.profile}>
         <Header />
         <View style={styles.user}>
@@ -56,7 +56,7 @@ const Dashboard = () => {
       </Text>
      </View>
      <TaskList/>
-    </View>
+    </SafeAreaView>
   );
 };
 

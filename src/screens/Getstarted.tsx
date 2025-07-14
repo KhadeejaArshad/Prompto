@@ -28,7 +28,7 @@ const Getstarted = ({navigation}:any) => {
       </View>
 
     <Pressable style={styles.button}>
-      <Button onPress={()=>navigation.navigate('Dashboard')}>Get Started</Button>
+      <Button onPress={()=>navigation.navigate('Registration')}>Get Started</Button>
 
     </Pressable>
     </View>
