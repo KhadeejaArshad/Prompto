@@ -6,34 +6,29 @@ import Text from '../UI/Text';
 import TaskForm from '../components/Form/Form';
 import { ToDo } from '../models/task';
 import { Task } from '../utils/Interfaces/interface';
+import { useDispatch,useSelector } from 'react-redux';
+import { addTask } from '../features/tasks/taskSlice';
+import { RootState } from '../store/store';
+
+
 
 const AddTask = () => {
-  const [tasks, setTasks] = useState<Task[]>(ToDo);
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   const handleAddTask = (newTask: { task: string; time: string }) => {
-    const newTaskObj = {
-      id: (tasks.length + 1).toString(),
-      title: newTask.task,
-      time: newTask.time,
-    };
-    setTasks(prev => [...prev, newTaskObj]);
+    dispatch(addTask({ title: newTask.task, time: newTask.time }));
   };
 
   return (
     <View style={styles.root}>
       <Header />
-      <View style={styles.heading}>
-        <Text weight="bold" size={22}>
-          What Next On The List?
-        </Text>
-        <Text weight="semibold" color={colors.greyish} size={18}>
-          Lets help you meet your task
-        </Text>
-      </View>
       <TaskForm onAddTask={handleAddTask} />
     </View>
   );
 };
+
+
 
 export default AddTask;
 

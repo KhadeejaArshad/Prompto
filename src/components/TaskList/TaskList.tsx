@@ -1,12 +1,10 @@
 import { StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
 import Text from '../../UI/Text';
-import React, { useState, useEffect, FC } from 'react';
+import React, {useEffect, FC } from 'react';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { colors } from '../../constants/colors';
 import Feather from '@react-native-vector-icons/feather';
-import { Task } from '../../utils/Interfaces/interface';
 import { onCreateTriggerNotification } from '../../utils/Notification/triggerNotification';
-import { ToDo } from '../../models/task';
 import { parseTime } from '../../utils/ParseTime/paerseTime';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../utils/Interfaces/interface';
@@ -14,9 +12,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Dashboard'>;
-
-
-
 
 const TaskList: FC = () => {
   const navigation = useNavigation<NavigationProp>();
