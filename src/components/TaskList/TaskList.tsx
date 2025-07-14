@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
 import Text from '../../UI/Text';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { colors } from '../../constants/colors';
 import Feather from '@react-native-vector-icons/feather';
@@ -8,25 +8,33 @@ import { Task } from '../../utils/Interfaces/interface';
 import { onCreateTriggerNotification } from '../../utils/Notification/triggerNotification';
 import { ToDo } from '../../models/task';
 import { parseTime } from '../../utils/ParseTime/paerseTime';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../utils/Interfaces/interface';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Dashboard'>;
 
-const TaskList = () => {
-  const [tasks, setTasks] = useState<Task[]>(ToDo);
+
+
+
+const TaskList: FC = () => {
+  const navigation = useNavigation<NavigationProp>();
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
   useEffect(() => {
-  tasks.forEach(item => {
-    onCreateTriggerNotification({ item });
-  });
-}, []);
+    tasks.forEach(item => {
+      onCreateTriggerNotification({ item });
+    });
+  }, [tasks]);
 
   const sortedTasks = tasks
     .slice()
     .sort((a, b) => parseTime(a.time).getTime() - parseTime(b.time).getTime());
+
   const isPast = (time: string): boolean => {
     const now = new Date();
     const taskTime = parseTime(time);
-
-    console.log('Now:', now.toLocaleString());
-    console.log('Task Time:', taskTime.toLocaleString());
-
     return taskTime.getTime() <= now.getTime();
   };
 
@@ -34,7 +42,7 @@ const TaskList = () => {
     <View style={styles.tasklist}>
       <View style={styles.header}>
         <Text weight="semibold"> Task list</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('AddTask')}>
           <Feather name="plus-circle" color={colors.iconcolor} size={30} />
         </TouchableOpacity>
       </View>
@@ -45,7 +53,6 @@ const TaskList = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
         renderItem={({ item }) => {
           const isDone = isPast(item.time);
-
           return (
             <View style={styles.card}>
               <View
@@ -53,7 +60,7 @@ const TaskList = () => {
                   styles.icon,
                   isDone && { backgroundColor: colors.iconcolor },
                 ]}
-              ></View>
+              />
               <Text>
                 {item.title} by {item.time}
               </Text>
@@ -64,6 +71,7 @@ const TaskList = () => {
     </View>
   );
 };
+
 
 export default TaskList;
 

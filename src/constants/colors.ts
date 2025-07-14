@@ -7,5 +7,7 @@ export const colors={
     hourHand:'#6A5D8F',
     minuteHand:'#9085B0',
     iconcolor:'#8E71DF',
-    bgdashboard:'#cfcfcf'
+    bgdashboard:'#cfcfcf',
+    greyish:'#9e9c9c',
+    inputgrey:'#CCCCCC'
 }
