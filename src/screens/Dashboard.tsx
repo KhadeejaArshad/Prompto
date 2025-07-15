@@ -7,6 +7,10 @@ import AnalogClock from 'react-native-clock-analog';
 import { images } from '../constants/images';
 import Text from '../UI/Text';
 import TaskList from '../components/TaskList/TaskList';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+
+
 const getGreeting = (): string => {
   const currentHour = new Date().getHours();
 
@@ -20,6 +24,7 @@ const getGreeting = (): string => {
 };
 
 const Dashboard = () => {
+  const userName = useSelector((state: RootState) => state.auth.userName);
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.profile}>
@@ -29,7 +34,7 @@ const Dashboard = () => {
             <Image source={images.profile} style={styles.img} />
           </View>
           <Text weight="semibold" color="white" size={22} marginV={15}>
-            Welcome Back Khadeeja
+            Welcome Back {userName}
           </Text>
         </View>
       </View>

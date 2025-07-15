@@ -13,10 +13,10 @@ import AddTask from './src/screens/AddTask';
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
 import { useNotificationHandler } from './src/utils/ActionsNotification/ActionNotification';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Registration from './src/screens/Registration';
 import Login from './src/screens/Login';
 import { useSelector } from 'react-redux';
+import { RootState } from './src/store/store';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,56 +62,29 @@ const AuthenticatedStack=()=>{
 
 
 const AppWrapper = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   return (
     <Provider store={store}>
-      <App />
+
+     <NavigationContainer>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+       <RootNavigator />
+     </NavigationContainer>
     </Provider>
   );
 };
-// function RootNavigator() {
-//   const loggedIn = useSelector(state => !!state.auth.token);
-//   return loggedIn ? <AuthenticatedStack /> : <AuthStack />;
-// }
+function RootNavigator() {
+ 
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const loggedIn = useSelector((state: RootState) => !!state.auth.token);
 
-  useNotificationHandler();
+ useNotificationHandler();
 
-  return (
-    <NavigationContainer>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Stack.Navigator initialRouteName="GetStarted">
-        <Stack.Screen
-          name="GetStarted"
-          component={Getstarted}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={Registration}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AddTask"
-          component={AddTask}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  return loggedIn ? <AuthenticatedStack /> : <AuthStack />;
 }
 
-const styles = StyleSheet.create({});
+
+
+
 
 export default AppWrapper;
