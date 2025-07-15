@@ -3,7 +3,7 @@ import React from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
-import AnalogClock from 'react-native-clock-analog';
+import AnalogClock from '../components/AnalogClock/AnalogClock';
 import { images } from '../constants/images';
 import Text from '../UI/Text';
 import TaskList from '../components/TaskList/TaskList';

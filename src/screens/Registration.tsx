@@ -3,11 +3,9 @@ import React from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
 import { Formik } from 'formik';
-import { RegistrationValues } from '../utils/Interfaces/interface';
 import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
 import Text from '../UI/Text';
 import Button from '../components/Button/Button';
-import { useDispatch } from 'react-redux';
 import { useSignUpMutation } from '../service/authData';
 
 import * as Yup from 'yup';
@@ -74,7 +72,7 @@ const Registration = ({ navigation }: any) => {
                 onBlur={handleBlur('name')}
                 value={values.name}
                 placeholder="Enter your full name"
-                underlineColorAndroid="transparent"
+                
               />
                 {touched.email && errors.email && (
                 <Text color="red">{errors.email}</Text>
@@ -86,7 +84,7 @@ const Registration = ({ navigation }: any) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 placeholder="Enter your email"
-                underlineColorAndroid="#69696900"
+              
               />
             
               {touched.password && errors.password && (
@@ -99,7 +97,7 @@ const Registration = ({ navigation }: any) => {
                 value={values.password}
                 placeholder="Enter password"
                 secureTextEntry
-                underlineColorAndroid="#cecece00"
+            
               />
             {touched.confirmPassword && errors.confirmPassword && (
                 <Text color="red">{errors.confirmPassword}</Text>
@@ -112,7 +110,7 @@ const Registration = ({ navigation }: any) => {
                 value={values.confirmPassword}
                 placeholder="Confirm password"
                 secureTextEntry
-                underlineColorAndroid="#70707000"
+              
               />
         
             </View>

@@ -3,11 +3,15 @@ import React, { FC } from 'react';
 import { images } from '../../constants/images';
 import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
 
+
 const Header: FC = () => {
   return (
-    <View style={styles.imagecontainer}>
+  
+      <View style={styles.imagecontainer}>
       <Image source={images.homepage} style={styles.img} />
     </View>
+
+ 
   );
 };
 

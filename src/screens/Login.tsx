@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View,Pressable } from 'react-native'
+import { StyleSheet, TextInput, View,Pressable, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Header from '../components/Header/Header'
 import { colors } from '../constants/colors'
@@ -8,6 +8,7 @@ import Button from '../components/Button/Button';
 import { scale,verticalScale,moderateScale } from 'react-native-size-matters';
 import { LoginValues } from '../utils/Interfaces/interface';
 import { useLoginMutation } from '../service/authData';
+import { images } from '../constants/images';
 
 const Login = ({navigation}:any) => {
     const [login]=useLoginMutation();
@@ -29,12 +30,10 @@ const Login = ({navigation}:any) => {
           <Header />
           <View style={styles.content}>
             <View style={styles.heading}>
-              <Text weight="bold" size={22}>
-                Welcome Onboard!
+              <Text weight="bold" size={22} marginV={29}>
+                Welcome Back
               </Text>
-              <Text weight="semibold" color={colors.greyish} size={18}>
-                Let’s help you meet your task
-              </Text>
+            <Image source={images.login} style={styles.img}/>
             </View>
 
             <View style={styles.form}>
@@ -44,7 +43,7 @@ const Login = ({navigation}:any) => {
                 onBlur={handleBlur('task')}
                 value={values.email}
                 placeholder="Enter your email?"
-                underlineColorAndroid="rgba(0, 0, 0, 0)"
+           
               />
               <TextInput
                 style={styles.input}
@@ -52,7 +51,7 @@ const Login = ({navigation}:any) => {
                 onBlur={handleBlur('task')}
                 value={values.password}
                 placeholder="Enter your password"
-                underlineColorAndroid="rgba(165, 165, 165, 0)"
+               
               />
            
            
@@ -60,12 +59,14 @@ const Login = ({navigation}:any) => {
           </View>
 
           <View style={styles.buttonContainer}>
-            <Button onPress={handleSubmit}>Register</Button>
+            <Button onPress={handleSubmit}>Login</Button>
           </View>
-          <Text>Already have an account?</Text>
-          <Pressable>
-            <Text color={colors.buttonColor} weight='bold'>Sign In</Text>
-          </Pressable>
+          <View style={{flexDirection:'row', gap:8, marginVertical:verticalScale(8)}}>
+               <Text>Don't have an account?</Text>
+          <TouchableOpacity onPress={()=>navigation.navigate('Registration')}>
+            <Text color={colors.buttonColor} weight='bold'>SignUp</Text>
+          </TouchableOpacity>
+          </View>
         </View>
       )}
     </Formik>
@@ -93,9 +94,10 @@ const styles = StyleSheet.create({
      },
      form: {
        alignItems: 'center',
+       marginTop:verticalScale(10)
      },
      input: {
-       width: scale(318),
+       width: scale(308),
        height: scale(56),
        backgroundColor: colors.inputgrey,
        marginVertical: verticalScale(8),
@@ -107,4 +109,9 @@ const styles = StyleSheet.create({
      buttonContainer: {
        alignItems: 'center',
      },
+     img:{
+      width:scale(158.1),
+      height:scale(178.18)
+     }
+  
 })
