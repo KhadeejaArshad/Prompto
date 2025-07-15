@@ -1,4 +1,11 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
@@ -27,32 +34,38 @@ const getGreeting = (): string => {
 
 const Dashboard = () => {
   const userName = useSelector((state: RootState) => state.auth.userName);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.profile}>
-    
-          <Header />
-          
-      
+        <Header />
+
         <View style={styles.user}>
           <View style={styles.imageContainer}>
             <Image source={images.profile} style={styles.img} />
           </View>
-          <View style={{flexDirection:'row', alignItems:'center', gap:scale(12)}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: scale(12),
+            }}
+          >
             <Text weight="semibold" color="white" size={22} marginV={15}>
-            Welcome Back {userName}
-          </Text>
-          <TouchableOpacity onPress={()=>dispatch(logout())}>
-            <Feather name='log-out'  color='white' size={24}/>
-          </TouchableOpacity>
+              Welcome Back {userName}
+            </Text>
+            <TouchableOpacity onPress={() => dispatch(logout())}>
+              <Feather name="log-out" color="white" size={24} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={styles.clock}>
-       <View style={styles.greeting}>
-         <Text weight="semibold" size={20}>{getGreeting()}</Text>
-       </View>
+        <View style={styles.greeting}>
+          <Text weight="semibold" size={20}>
+            {getGreeting()}
+          </Text>
+        </View>
         <AnalogClock
           size={130}
           colorClock={colors.clockColor}
@@ -66,12 +79,12 @@ const Dashboard = () => {
         />
       </View>
 
-     <View style={styles.heading}>
-         <Text weight='semibold' size={16}>
-        Task list
-      </Text>
-     </View>
-     <TaskList/>
+      <View style={styles.heading}>
+        <Text weight="semibold" size={16}>
+          Task list
+        </Text>
+      </View>
+      <TaskList />
     </SafeAreaView>
   );
 };
@@ -102,28 +115,27 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: verticalScale(10),
   },
-  clock:{
-  
-    justifyContent:'center',
-    alignItems:'center',
-    marginVertical:verticalScale(20)
+  clock: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: verticalScale(20),
   },
-  greeting:{
-    marginRight:scale(-140),
-    marginBottom:verticalScale(15)
+  greeting: {
+    marginRight: scale(-140),
+    marginBottom: verticalScale(15),
   },
-  header:{
-    flexDirection:'row',
-    justifyContent:'space-between'
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  tasklist:{
-    padding:moderateScale(20),
-    backgroundColor:colors.bgdashboard,
-    marginHorizontal:scale(20),
-    height:verticalScale(180)
+  tasklist: {
+    padding: moderateScale(20),
+    backgroundColor: colors.bgdashboard,
+    marginHorizontal: scale(20),
+    height: verticalScale(180),
   },
-  heading:{
-    marginHorizontal:scale(20),
-    marginVertical:scale(10)
-  }
+  heading: {
+    marginHorizontal: scale(20),
+    marginVertical: scale(10),
+  },
 });

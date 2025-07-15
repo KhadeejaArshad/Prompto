@@ -24,8 +24,9 @@ const Login = ({navigation}:any) => {
   }
 };
   return (
-     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
+
+  <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ handleChange, handleSubmit, values }) => (
         <View style={styles.root}>
           <Header />
           <View style={styles.content}>
@@ -40,7 +41,7 @@ const Login = ({navigation}:any) => {
               <TextInput
                 style={styles.input}
                 onChangeText={handleChange('email')}
-                onBlur={handleBlur('task')}
+                
                 value={values.email}
                 placeholder="Enter your email?"
            
@@ -48,7 +49,7 @@ const Login = ({navigation}:any) => {
               <TextInput
                 style={styles.input}
                 onChangeText={handleChange('password')}
-                onBlur={handleBlur('task')}
+               
                 value={values.password}
                 placeholder="Enter your password"
                
@@ -70,6 +71,9 @@ const Login = ({navigation}:any) => {
         </View>
       )}
     </Formik>
+       
+
+  
   )
 }
 
