@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { colors } from '../constants/colors';
 import Header from '../components/Header/Header';
@@ -9,7 +9,9 @@ import Text from '../UI/Text';
 import TaskList from '../components/TaskList/TaskList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-
+import Feather from '@react-native-vector-icons/feather';
+import { logout } from '../features/Auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 const getGreeting = (): string => {
   const currentHour = new Date().getHours();
@@ -25,17 +27,26 @@ const getGreeting = (): string => {
 
 const Dashboard = () => {
   const userName = useSelector((state: RootState) => state.auth.userName);
+  const dispatch=useDispatch()
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.profile}>
-        <Header />
+    
+          <Header />
+          
+      
         <View style={styles.user}>
           <View style={styles.imageContainer}>
             <Image source={images.profile} style={styles.img} />
           </View>
-          <Text weight="semibold" color="white" size={22} marginV={15}>
+          <View style={{flexDirection:'row', alignItems:'center', gap:scale(12)}}>
+            <Text weight="semibold" color="white" size={22} marginV={15}>
             Welcome Back {userName}
           </Text>
+          <TouchableOpacity onPress={()=>dispatch(logout())}>
+            <Feather name='log-out'  color='white' size={24}/>
+          </TouchableOpacity>
+          </View>
         </View>
       </View>
       <View style={styles.clock}>
